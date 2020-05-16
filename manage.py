@@ -21,7 +21,7 @@ with open ('Data/RecommendationModel1', 'wb') as fp:
     pickle.dump(rec,fp)
 """
 
-rec2 = RecommendationModel3(profil_type,candidat,df)
+#rec2 = RecommendationModel3(profil_type,candidat,df)
 
 def main():
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'MyFirstTest.settings')
