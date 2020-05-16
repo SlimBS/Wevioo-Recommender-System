@@ -33,7 +33,7 @@ dictProfile = {
     } 
 
 def login(request):
-    a=10
+    b=11
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
