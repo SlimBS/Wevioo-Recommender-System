@@ -25,6 +25,8 @@ from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 import numpy.linalg as LA
 from math import sqrt
+import pickle
+from scipy.spatial import distance
 class Preparation:
     def __init__(self,Link,cookie):
         self.Link = Link
@@ -869,14 +871,12 @@ class RecommendationModel3:
         self.dfClean = dst
         self.df_profile_type=df_profile_type
         self.result=result
+        for i in df_profile_type.index[3:4]:
+            j=i.replace('/', '')
+            with open('Data/Modele_distance_euclidienne/'+j, 'wb') as fp:
+                pickle.dump(self.find_top_k_profile(i),fp)
     
-    def euclidean_distance(self,row1, row2):
-        distance = 0.0
-        for i in range(len(row1)-1):
-            distance += (row1[i] - row2[i])**2
-        return sqrt(distance)
-    
-    def find_top_k_profile(self,job,n):
+    def find_top_k_profile(self,job):
         skills_list=['Javascript', 'SQL', 'NoSQL', 'Nodejs', 'express.js', 'Koa.js',
        'Hapi.js', 'Angular JS', 'React JS', 'Jquery', 'Bash', 'Nginx0', 'C',
        'C++', 'HTML5', 'CSS', 'REST', 'SASS', 'PostCss', 'Webpack', 'Gitlab',
@@ -897,12 +897,12 @@ class RecommendationModel3:
         row0 = df_profile_type3.loc[job,:]
         dst=pd.DataFrame(columns=['row','distance'],index=result3.index)
         for row in range(len(result3)):
-            distance = self.euclidean_distance(row0, result3.loc[row,:])
+            distancee = distance.euclidean(row0, result3.loc[row,:])
             dst.loc[row,'row']=row
-            dst.loc[row,'distance']=distance
+            dst.loc[row,'distance']=distancee
             rs=pd.merge(dst,self.dfClean,how='left',left_on='row', right_on=self.dfClean.index)
             rs.sort_values(by='distance')
-            indexes = rs.head(n).index
+            indexes = rs.index
             
         return(self.dfClean.iloc[indexes,[0,1]])
     

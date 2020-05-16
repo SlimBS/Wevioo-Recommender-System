@@ -16,8 +16,6 @@ with open ('Data/RecommendationModel1', 'rb') as fp:
     rec = pickle.load(fp)
 candidat = pd.read_csv("Data/candidats.csv")
 df = pd.read_csv("Data/df_final_2.csv")
-with open ('Data/profil_type', 'rb') as fp:
-    profil_type = pickle.load(fp)
 dfClean = df.iloc[:,2:]
 dictProfile = {
         "Développeur Web Back-End" : 0,
@@ -146,9 +144,12 @@ def difference(request):
 def euclidean(request):
     user = request.user.username
     if(request.method == 'POST'):
-        rec2 = RecommendationModel3(profil_type,candidat,df)
-        result = rec2.find_top_k_profile(request.POST["Profile"],int(request.POST["numRec"]))
-        return render(request,"FrontOffice/euclideanRecommendation.html",{'username':user,'DataFrame':result})
+        ch= request.POST["Profile"]
+        ch=ch.replace('/', '')
+        with open ('Data/Modele_distance_euclidienne'+ch, 'rb') as fp:
+            data = pickle.load(fp)
+        data = data.head(int(request.POST["numRec"]))
+        return render(request,"FrontOffice/euclideanRecommendation.html",{'username':user,'DataFrame':data})
     return render(request,"FrontOffice/euclideanRecommendation.html",{'username':user})
 
 @login_required
