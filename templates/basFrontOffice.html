@@ -60,15 +60,7 @@
         <ul>
           <li class="active"><a href="{% url 'userIndex' %}">Home</a></li>
 
-          <li class="drop-down"><a href="#">Best candidates for a job</a>
-            <ul>
-              <li><a href="{% url 'cosine' %}">Recommendation basé sur tout les critéres</a></li>
-              <li><a href="{% url 'difference' %}">Recommendation basé sur le Scroe</a></li>
-              <li><a href="{% url 'euclidean' %}">Recommendation basé sur les skills</a></li>
-              <li><a href="{% url 'scoring' %}">Recommendation basé sur l'experience</a></li>
-              <li><a href="{% url 'decision' %}">Prise de décision</a></li>
-            </ul>
-          </li>
+           <li><a href="{% url 'decision' %}">Recommendation</a></li>
 
           <li class="drop-down"><a href="#">Similar candidates</a>
             <ul>
@@ -97,18 +89,19 @@
         <div class="carousel-inner" role="listbox">
 
           <!-- Slide 1 -->
-          <div class="carousel-item active" style="background: url(https://www.gitas.org/sites/default/files/2018-08/Wevioo.jpg)">
+          <div class="carousel-item active" style="background: url(/static/images/logo.png) ; background-repeat:no-repeat; 
+          background-position:center; position:relative; background-size:100% 100%">
             <div class="carousel-container">
               <div class="carousel-content">
                 <h2 class="animated fadeInDown">Welcome to <span>Wevioo RH</span></h2>
-                <p class="animated fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-                <a href="" class="btn-get-started animated fadeInUp">Read More</a>
+                
               </div>
             </div>
           </div>
 
           <!-- Slide 2 -->
-          <div class="carousel-item" style="background:url(assets/img/slide/slide-2.jpg)">
+          <div class="carousel-item"style="background: url(/static/images/Wevioo.jpg) ; background-repeat:no-repeat; 
+          background-position:center; position:relative; background-size:100% 100%">
             <div class="carousel-container">
               <div class="carousel-content">
                 <h2 class="animated fadeInDown">Lorem <span>Ipsum Dolor</span></h2>
@@ -148,35 +141,7 @@
   <main id="main">
 
     <!-- ======= Featured Section ======= -->
-    <section id="featured" class="featured">
-      <div class="container">
 
-        <div class="row">
-          <div class="col-lg-4">
-            <div class="icon-box">
-              <i class="icofont-computer"></i>
-              <h3><a href="">Lorem Ipsum</a></h3>
-              <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
-            </div>
-          </div>
-          <div class="col-lg-4 mt-4 mt-lg-0">
-            <div class="icon-box">
-              <i class="icofont-image"></i>
-              <h3><a href="">Dolor Sitema</a></h3>
-              <p>Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
-            </div>
-          </div>
-          <div class="col-lg-4 mt-4 mt-lg-0">
-            <div class="icon-box">
-              <i class="icofont-tasks-alt"></i>
-              <h3><a href="">Sed ut perspiciatis</a></h3>
-              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section><!-- End Featured Section -->
 
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
@@ -184,24 +149,20 @@
 
         <div class="row">
           <div class="col-lg-6">
-            <img src="assets/img/about.jpg" class="img-fluid" alt="">
+            <img src="{% static 'images/Wevioo1.jpg'%}" class="img-fluid" alt="">
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0 content">
-            <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
+            <h3>Wevioo : Inspired Solutions</h3>
             <p class="font-italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
+              Since its creation in 1998, the Wevioo group supports its clients in their digital transformation projects and their son expertise and son know-how in 3 areas: Consulting, Digital and IOT.
+
+              As a committed partner, Wevioo provides its customers with digital innovation solutions that are perfectly suited to their agility, performance and development challenges.
+              
+              With a culture of innovation at the heart of its DNA, Wevioo invests in R&D to provide its customers and partners with innovative solutions and expertise at the cutting edge of technology.
+              
+              Wevioo is backed by several hundred demanding projects carried out by its business and technology experts in more than 30 countries in Europe, North America, Africa and the Middle East.
             </p>
-            <ul>
-              <li><i class="icofont-check-circled"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-              <li><i class="icofont-check-circled"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-              <li><i class="icofont-check-circled"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
-            </ul>
-            <p>
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-              culpa qui officia deserunt mollit anim id est laborum
-            </p>
+
           </div>
         </div>
 
@@ -213,55 +174,55 @@
       <div class="container">
 
         <div class="section-title" data-aos="fade-up">
-          <h2>Our Services</h2>
+          <h2>Working team</h2>
         </div>
 
         <div class="row">
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bxl-dribbble"></i></div>
-              <h4><a href="">Lorem Ipsum</a></h4>
-              <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+            <div class="icon-box col-lg-12">
+              <div class="icon"><img height="70px" width="70px" src="https://scontent.ftun3-1.fna.fbcdn.net/v/t1.0-9/s960x960/79600676_10215423831578596_1696348473730793472_o.jpg?_nc_cat=109&_nc_sid=85a577&_nc_oc=AQkL0Nh-cSk2KK0Z9XnnxiZ7HzOD1IjEbTOrPKVzE8r-88NxdhMAMmdKFBPXs3B7rWc&_nc_ht=scontent.ftun3-1.fna&_nc_tp=7&oh=6d540228ab02fabe22ca4fd53f4683c5&oe=5EE72BC6"></div>
+              <h4><a href="https://www.linkedin.com/in/mustapha-belhaj/" target="_blank">Mustapha Benhaj Minyaoui</a></h4>
+              <p>Data Scientist</p>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-file"></i></div>
-              <h4><a href="">Sed ut perspiciatis</a></h4>
-              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
+            <div class="icon-box col-lg-12">
+              <div class="icon"><img height="70px" width="70px" src="https://scontent.ftun3-1.fna.fbcdn.net/v/t1.0-9/82206807_10218729806908372_8999590883384885248_n.jpg?_nc_cat=100&_nc_sid=85a577&_nc_oc=AQlXegA4ZkngHTSy7SrUqvYeTOIDv9byQsvebhTyamDutLtwNVYjuoEjqcVkmhN2TY0&_nc_ht=scontent.ftun3-1.fna&oh=ccb74b2bd31d3c7a2faebd4297ffaf50&oe=5EE94900"></div>
+              <h4><a href="https://www.linkedin.com/in/bensalah-slim-7691a0189/" target="_blank">Slim Ben Salah</a></h4>
+              <p>Data Scientist</p>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-tachometer"></i></div>
-              <h4><a href="">Magni Dolores</a></h4>
-              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
+            <div class="icon-box col-lg-12">
+              <div class="icon"><img height="70px" width="70px" src="https://scontent.ftun3-1.fna.fbcdn.net/v/t31.0-8/p960x960/18738576_1578977145468691_8610141903511267190_o.jpg?_nc_cat=103&_nc_sid=7aed08&_nc_oc=AQl1qz5xl0V7-ublOzZ7cSrpo72TOJjXcYc8Tn3SxwXav6sTKJBcZvoWHnuaVvKWIGo&_nc_ht=scontent.ftun3-1.fna&_nc_tp=6&oh=f77a4c5bccd32ce5851abc19ac0d673d&oe=5EE8BCCE"></div>
+              <h4><a href="https://www.linkedin.com/in/oumayma-boukhayatia-32099a169/" target="_blank">Oumayma Boukhayatia</a></h4>
+              <p>Data Scientist</p>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-world"></i></div>
-              <h4><a href="">Nemo Enim</a></h4>
-              <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
+            <div class="icon-box col-lg-12">
+              <div class="icon"><img height="70px" width="70px" src="https://scontent.ftun3-1.fna.fbcdn.net/v/t1.0-9/p960x960/73322565_2608733929170134_3189936059723022336_o.jpg?_nc_cat=108&_nc_sid=85a577&_nc_oc=AQn2IFGSeqdr7GlyBBRW08j4EelnudhQoLq4FeDkGwcL6JDXn7MWFSrMKn63seV1_K0&_nc_ht=scontent.ftun3-1.fna&_nc_tp=6&oh=c5ea65be64f5ec0dfa7a490df3f027d4&oe=5EE749F2"></div>
+              <h4><a href="https://www.linkedin.com/in/wassim-slatnia/" target="_blank">Wassim Slatnia</a></h4>
+              <p>Data Scientist</p>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-slideshow"></i></div>
-              <h4><a href="">Dele cardo</a></h4>
-              <p>Quis consequatur saepe eligendi voluptatem consequatur dolor consequuntur</p>
+            <div class="icon-box col-lg-12">
+              <div class="icon"><img height="70px" width="70px" src="https://scontent.ftun3-1.fna.fbcdn.net/v/t1.0-9/p720x720/80779972_2819321944772689_3493486846212571136_o.jpg?_nc_cat=104&_nc_sid=85a577&_nc_oc=AQmo4AelRp7vosvNTy9A4cu25oZbbX4RdbmqlYjsWH8m21c6oBivRPY0I4nxPwYc6OU&_nc_ht=scontent.ftun3-1.fna&_nc_tp=6&oh=90c374aa327b882ca22077bbbaf67ea3&oe=5EE630A8"></div>
+              <h4><a href="https://www.linkedin.com/in/dhia-chebbi-4a2065163/" target="_blank" >Dhia Chebbi</a></h4>
+              <p>Data Scientist</p>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-arch"></i></div>
-              <h4><a href="">Divera don</a></h4>
-              <p>Modi nostrum vel laborum. Porro fugit error sit minus sapiente sit aspernatur</p>
+            <div class="icon-box col-lg-12">
+              <div class="icon"><img height="70px" width="70px" src="https://scontent.ftun3-1.fna.fbcdn.net/v/t1.0-9/82400500_10213488944932020_5981584585018834944_o.jpg?_nc_cat=111&_nc_sid=85a577&_nc_oc=AQk5BsFSLiinakvSKpcFJOxL1BwimXmId29u6FigUrTchJJTd_2P3qzqUhWqapJiXso&_nc_ht=scontent.ftun3-1.fna&oh=2a5a3d5191982faf5c60351ae5c2fdd6&oe=5EE94564"></div>
+              <h4><a href="https://www.linkedin.com/in/chifa-kitar-069a35176/" target="_blank">Chifa Kitar</a></h4>
+              <p>Data Scientist</p>
             </div>
           </div>
 
@@ -270,28 +231,7 @@
       </div>
     </section><!-- End Services Section -->
 
-    <!-- ======= Clients Section ======= -->
-    <section id="clients" class="clients">
-      <div class="container">
 
-        <div class="section-title">
-          <h2>Clients</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-        </div>
-
-        <div class="owl-carousel clients-carousel">
-          <img src="assets/img/clients/client-1.png" alt="">
-          <img src="assets/img/clients/client-2.png" alt="">
-          <img src="assets/img/clients/client-3.png" alt="">
-          <img src="assets/img/clients/client-4.png" alt="">
-          <img src="assets/img/clients/client-5.png" alt="">
-          <img src="assets/img/clients/client-6.png" alt="">
-          <img src="assets/img/clients/client-7.png" alt="">
-          <img src="assets/img/clients/client-8.png" alt="">
-        </div>
-
-      </div>
-    </section><!-- End Clients Section -->
     {% endblock %}
   </main><!-- End #main -->
 

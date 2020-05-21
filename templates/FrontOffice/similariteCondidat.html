@@ -17,18 +17,18 @@
                     <div class="carousel-item active" >
                         <div class="carousel-container">
                             <div class="carousel-content">
-                                <h2 class="animated fadeInDown">Similarité à un candidat <span>Externe</span></h2>
+                                <h2 class="animated fadeInDown">Similarity to an External candidate</span></h2>
                                 <br>
                                 <br>
                                 
                                 <div class="form-group">
                                 <form method="POST">
                                     {% csrf_token %}
-                                    <label for="exampleInputEmail1">URL profil LinkedIn</label>
-                                    <input  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Coller l'url du profil LinkedIn" name="urlprofile">
-                                    <small id="emailHelp" class="form-text text-muted">On va collecter des donnés à partir du profil LinkedIn que vous avez mentionner</small>
+                                    <label for="exampleInputEmail1">URL LinkedIn Profile</label>
+                                    <input  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Paste a LinkedIn Profile URL" name="urlprofile">
+                                    <small id="emailHelp" class="form-text text-muted">We will collect data from the profile you paste its URL</small>
                                     <br/>
-                                    <input type="submit" value="Collecter Les données" class="btn btn-success"/>
+                                    <input type="submit" value="See similar candidates" class="btn btn-success"/>
                                 </form>  
                                 </div>
                                   <br>

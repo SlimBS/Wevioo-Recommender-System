@@ -867,16 +867,22 @@ class RecommendationModel2:
 #################################### CHIFA #################################################
 
 class RecommendationModel3:
-    def __init__(self,df_profile_type,result,dst):
-        self.dfClean = dst
+    def __init__(self,df_profile_type,result,df):
         self.df_profile_type=df_profile_type
         self.result=result
-        for i in df_profile_type.index[3:4]:
+        self.df=df
+        for i in df_profile_type.index:
             j=i.replace('/', '')
             with open('Data/Modele_distance_euclidienne/'+j, 'wb') as fp:
-                pickle.dump(self.find_top_k_profile(i),fp)
+                pickle.dump(self.find_top_k_profile(i,result,df_profile_type),fp)
     
-    def find_top_k_profile(self,job):
+    def euclidean_distance(self,row1, row2):
+        distance = 0.0
+        for i in range(len(row1)-1):
+            distance += (row1[i] - row2[i])**2
+        return sqrt(distance)
+    
+    def find_top_k_profile(self,job,result2,df_profile_type2,k=50):
         skills_list=['Javascript', 'SQL', 'NoSQL', 'Nodejs', 'express.js', 'Koa.js',
        'Hapi.js', 'Angular JS', 'React JS', 'Jquery', 'Bash', 'Nginx0', 'C',
        'C++', 'HTML5', 'CSS', 'REST', 'SASS', 'PostCss', 'Webpack', 'Gitlab',
@@ -888,23 +894,22 @@ class RecommendationModel3:
        'Analyse fonctionnelle', 'Testing', 'Rédaction']
         result2=self.result.copy()
         for i in skills_list:
-            result2[i]=result2[i]*self.df_profile_type[i][job]
+            result2[i]=result2[i]*df_profile_type2[i][job]
     
         sc=StandardScaler()
         result3=pd.DataFrame(sc.fit_transform(result2),columns=result2.columns)
-        df_profile_type3=pd.DataFrame(sc.fit_transform(self.df_profile_type),columns=self.df_profile_type.columns,index=self.df_profile_type.index)
+        df_profile_type3=pd.DataFrame(sc.fit_transform(df_profile_type2),columns=df_profile_type2.columns,index=df_profile_type2.index)
     
         row0 = df_profile_type3.loc[job,:]
         dst=pd.DataFrame(columns=['row','distance'],index=result3.index)
         for row in range(len(result3)):
-            distancee = distance.euclidean(row0, result3.loc[row,:])
+            distance = self.euclidean_distance(row0, result3.loc[row,:])
             dst.loc[row,'row']=row
-            dst.loc[row,'distance']=distancee
-            rs=pd.merge(dst,self.dfClean,how='left',left_on='row', right_on=self.dfClean.index)
-            rs.sort_values(by='distance')
-            indexes = rs.index
+            dst.loc[row,'distance']=distance
+            rs=pd.merge(dst,self.df,how='left',left_on='row', right_on=self.df.index)
             
-        return(self.dfClean.iloc[indexes,[0,1]])
+        return (rs.sort_values(by='distance').head(k)).iloc[:,[2,3]]
+  
     
     
 
@@ -1290,42 +1295,69 @@ class RecommendationModel4:
             self.calcul_score_po()
             return self.sort_PO("all info")
 
-def priseDedecision(method,dfCos,dfDiff,dfScore,n):
+def priseDedecision(method,dfCos,dfDiff,dfScore,dfEuc,n):
     df_commun = pd.concat([dfCos,dfDiff,dfScore]).drop_duplicates()
     if(method == 'Scoring'):
         num = []
+        rang =0
         for index in df_commun.index:
             k = 0
             if index in dfScore.index:
-                k+=2
+                k+=2 * (n-rang)
             if index in dfDiff.index:
-                k+=1
+                k+=1* (n-rang)
             if index in dfCos.index:
-                k+=1
+                k+=1 * (n-rang)
+            if index in dfEuc.index:
+                k+=1 * (n-rang)
             num.append(k)
+            rang+=1
 
     if(method == 'Score'):
         num = []
+        rang = 0
         for index in df_commun.index:
             k = 0
             if index in dfScore.index:
-                k+=1
+                k+=1 * (n-rang)
             if index in dfDiff.index:
-                k+=2
+                k+=2 * (n-rang)
             if index in dfCos.index:
-                k+=1
+                k+=1 * (n-rang)
+            if index in dfEuc.index:
+                k+=1 * (n-rang)
             num.append(k)
+            rang+=1
     if(method == 'All'):
         num = []
+        rang = 0
         for index in df_commun.index:
             k = 0
             if index in dfScore.index:
-                k+=1
+                k+=1 * (n-rang)
             if index in dfDiff.index:
-                k+=1
+                k+=1 * (n-rang)
             if index in dfCos.index:
-                k+=2
+                k+=2 * (n-rang)
+            if index in dfEuc.index:
+                k+=1 * (n-rang)
             num.append(k)
+            rang+=1
+    if(method == 'skill'):
+        num = []
+        rang = 0
+        for index in df_commun.index:
+            k = 0
+            if index in dfScore.index:
+                k+=1 * (n-rang)
+            if index in dfDiff.index:
+                k+=1 * (n-rang)
+            if index in dfCos.index:
+                k+=1 * (n-rang)
+            if index in dfEuc.index:
+                k+=2 * (n-rang)
+            num.append(k)
+            rang+=1
 
     df_commun["numrecommended"] = num
     return df_commun.sort_values("numrecommended",ascending=False).iloc[0:n,[0,1]]

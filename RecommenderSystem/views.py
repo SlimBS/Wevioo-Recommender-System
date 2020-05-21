@@ -146,10 +146,11 @@ def euclidean(request):
     if(request.method == 'POST'):
         ch= request.POST["Profile"]
         ch=ch.replace('/', '')
-        with open ('Data/Modele_distance_euclidienne'+ch, 'rb') as fp:
+        print("############################################"+ch)
+        with open ('Data/Modele_distance_euclidienne/'+ch, 'rb') as fp:
             data = pickle.load(fp)
-        data = data.head(int(request.POST["numRec"]))
-        return render(request,"FrontOffice/euclideanRecommendation.html",{'username':user,'DataFrame':data})
+        result = data.head(int(request.POST["numRec"]))
+        return render(request,"FrontOffice/euclideanRecommendation.html",{'username':user,'DataFrame':result})
     return render(request,"FrontOffice/euclideanRecommendation.html",{'username':user})
 
 @login_required
@@ -169,7 +170,15 @@ def decision(request):
         rec2 = RecommendationModel4(df)
         dfScore = rec2.recommender(request.POST["Profile"]).iloc[0:int(request.POST["numRec"]),[0,1]]
 
-        result = priseDedecision(request.POST["method"],dfCos,dfDiff,dfScore,int(request.POST["numRec"]))
+
+        ch= request.POST["Profile"]
+        ch=ch.replace('/', '')
+        print("############################################"+ch)
+        with open ('Data/Modele_distance_euclidienne/'+ch, 'rb') as fp:
+            data = pickle.load(fp)
+        dfEuc = data.head(int(request.POST["numRec"]))
+
+        result = priseDedecision(request.POST["method"],dfCos,dfDiff,dfScore,dfEuc,int(request.POST["numRec"]))
 
         return render(request,"FrontOffice/priseDeDecision.html",{'username':user,'DataFrame':result})
     return render(request,"FrontOffice/priseDeDecision.html",{'username':user})
